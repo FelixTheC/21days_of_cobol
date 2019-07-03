@@ -1,0 +1,31 @@
+       DELETE-MODE.
+            MOVE "DELTE" TO THE-MODE.
+            PERFORM GET-EXISTING-RECORD.
+            PERFORM DELETE-RECORDS
+               UNTIL VENDOR-NUMBER = ZEROES.
+
+       DELETE-RECORDS.
+               PERFORM DISPLAY-ALL-FIELDS.
+
+               PERFORM ASK-TO-DELETE.
+
+               IF OK-TO-DELETE = "Y"
+                   PERFORM DELETE-VENDOR-RECORD.
+
+               PERFORM GET-EXISTING-RECORD.
+
+       ASK-TO-DELETE.
+            PERFORM ACCEPT-OK-TO-DELETE.
+            PERFORM RE-ACCEPT-OK-TO-DELETE
+               UNTIL OK-TO-DELETE = "Y" OR "N".
+
+       ACCEPT-OK-TO-DELETE.
+            DISPLAY "DELETE THIS RECORD (Y/N)?".
+            ACCEPT OK-TO-DELETE.
+            INSPECT OK-TO-DELETE
+               CONVERTING LOWER-ALPHA
+               TO UPPER-ALPHA.
+
+       RE-ACCEPT-OK-TO-DELETE.
+            DISPLAY "YOU MUST ENTER YES OR NO".
+            PERFORM ACCEPT-OK-TO-DELETE.
